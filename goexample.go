@@ -1,19 +1,13 @@
 package main
 
-import (
-	"fmt"
-	"html"
-	"log"
-	"net/http"
-)
+import "github.com/gofiber/fiber/v2"
 
 func main() {
-	log.Print("Starting go docker test file, listen on 8081")
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, %q, just a basic test.", html.EscapeString(r.URL.Path))
+	app := fiber.New()
+
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("Hello, Atli Thor!")
 	})
-	http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hi there")
-	})
-	log.Fatal(http.ListenAndServe(":8081", nil))
+
+	app.Listen(":3000")
 }
