@@ -3,7 +3,6 @@ package main
 import (
 	"github.com/atolafsson/goexample/database"
 	"github.com/atolafsson/goexample/handlers"
-	"github.com/atolafsson/goexample/models"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -14,7 +13,7 @@ func setupRoutes(app *fiber.App) {
 
 func main() {
 	database.ConnectDb()
-	database.DB.Db.AutoMigrate(&models.Fact{})
+	//database.DB.Db.AutoMigrate(&models.Fact{})
 	app := fiber.New()
 	setupRoutes(app)
 
